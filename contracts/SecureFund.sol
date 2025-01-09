@@ -4,7 +4,7 @@ pragma solidity ^0.8.7;
 import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 
 // Custom errors with enum
-error FundMe__Error(Error error, uint256 requested, uint256 available);
+error Fund__Error(Error error, uint256 requested, uint256 available);
 
 // Enum for error types
 enum Error {
@@ -14,10 +14,10 @@ enum Error {
 }
 
 /**
- * @title FundMe Smart Contract
+ * @title Fund Smart Contract
  * @notice This contract allows users to deposit ETH and enables the owner to withdraw funds securely.
  */
-contract FundMe is ReentrancyGuard {
+contract Fund is ReentrancyGuard {
     // State Variables
     address private immutable i_owner;
     address[] private s_funders;
@@ -31,7 +31,7 @@ contract FundMe is ReentrancyGuard {
     // Modifier to restrict access to the contract owner
     modifier onlyOwner() {
         if (msg.sender != i_owner) {
-            revert FundMe__Error(Error.NotAuthorized, 0, 0);
+            revert Fund__Error(Error.NotAuthorized, 0, 0);
         }
         _;
     }
@@ -62,10 +62,10 @@ contract FundMe is ReentrancyGuard {
      */
     function withdraw(uint256 amount) public onlyOwner nonReentrant {
         if (amount == 0) {
-            revert FundMe__Error(Error.InsufficientBalance, 0, 0);
+            revert Fund__Error(Error.InsufficientBalance, 0, 0);
         }
         if (amount > s_totalBalance) {
-            revert FundMe__Error(Error.InsufficientBalance, amount, s_totalBalance);
+            revert Fund__Error(Error.InsufficientBalance, amount, s_totalBalance);
         }
 
         // Transfer funds to the owner
