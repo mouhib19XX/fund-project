@@ -8,7 +8,7 @@ async function main() {
   const secureFund = await SecureFundFactory.deploy();
 
 
-  console.log("SecureFund deployed to:", secureFund.runner.address);
+  console.log("SecureFund deployed to:", secureFund);
 }
 
 // Run the deployment script
