@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.7;
+pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 
@@ -17,7 +17,7 @@ enum Error {
  * @title Fund Smart Contract
  * @notice This contract allows users to deposit ETH and enables the owner to withdraw funds securely.
  */
-contract Fund is ReentrancyGuard {
+contract SecureFund is ReentrancyGuard {
     // State Variables
     address private immutable i_owner;
     address[] private s_funders;
